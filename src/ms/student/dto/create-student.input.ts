@@ -6,6 +6,8 @@ import { FileUpload } from 'src/common/entities/file-upload.entity';
 export class CreateStudentInput {
   @Field(() => String)
   firstName: string;
+  @Field(() => String)
+  document: string;
 
   @Field(() => String)
   secondName: string;
@@ -15,9 +17,6 @@ export class CreateStudentInput {
 
   @Field(() => String)
   lastNameTwo: string;
-
-  @Field(() => String)
-  documento: string;
 
   @Field(() => GraphQLUpload)
   photoUrl: Promise<FileUpload>;

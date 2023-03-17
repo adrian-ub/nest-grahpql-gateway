@@ -18,7 +18,7 @@ export class Student {
   lastNameTwo: string;
 
   @Field(() => String)
-  documento: string;
+  document: string;
 
   @Field(() => String)
   photoUrl: string;

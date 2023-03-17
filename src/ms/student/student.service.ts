@@ -20,7 +20,7 @@ export class StudentService {
         file: photoUrl,
       });
       const { data } = await lastValueFrom(
-        this.httpService.post(`${endpoints.msTeacher}/student`, {
+        this.httpService.post(`${endpoints.msStudent}/student`, {
           ...restCreateStudentInput,
           photoUrl: file,
         }),
