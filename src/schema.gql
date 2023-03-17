@@ -28,7 +28,7 @@ input CreateStudentInput {
   firstName: String!
   lastName: String!
   lastNameTwo: String!
-  photoUrl: String!
+  photoUrl: Upload!
   secondName: String!
 }
 
@@ -124,7 +124,7 @@ input UpdateStudentInput {
   id: Int!
   lastName: String
   lastNameTwo: String
-  photoUrl: String
+  photoUrl: Upload
   secondName: String
 }
 

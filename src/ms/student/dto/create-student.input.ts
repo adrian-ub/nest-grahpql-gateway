@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import GraphQLUpload from 'graphql-upload/GraphQLUpload';
+import * as GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
 import { FileUpload } from 'src/common/entities/file-upload.entity';
 
 @InputType()
