@@ -3,19 +3,27 @@ import { Injectable } from '@nestjs/common';
 import { GraphQLError } from 'graphql';
 import { lastValueFrom } from 'rxjs';
 import { endpoints } from 'src/config';
+import { UploadFileService } from '../upload-file/upload-file.service';
 import { CreateStudentInput } from './dto/create-student.input';
 import { UpdateStudentInput } from './dto/update-student.input';
 
 @Injectable()
 export class StudentService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly uploadFileService: UploadFileService,
+  ) {}
   async create(createStudentInput: CreateStudentInput) {
     try {
+      const { photoUrl, ...restCreateStudentInput } = createStudentInput;
+      const { file } = await this.uploadFileService.create({
+        file: photoUrl,
+      });
       const { data } = await lastValueFrom(
-        this.httpService.post(
-          `${endpoints.msTeacher}/student`,
-          createStudentInput,
-        ),
+        this.httpService.post(`${endpoints.msTeacher}/student`, {
+          ...restCreateStudentInput,
+          photoUrl: file,
+        }),
       );
 
       if (data.success) {

@@ -6,12 +6,13 @@ import * as FormData from 'form-data';
 import { firstValueFrom } from 'rxjs';
 import { endpoints } from 'src/config';
 import { HttpService } from '@nestjs/axios';
+import { UploadFile } from './entities/upload-file.entity';
 
 @Injectable()
 export class UploadFileService {
   constructor(private readonly httpService: HttpService) {}
 
-  async create({ file }: CreateUploadFileInput) {
+  async create({ file }: CreateUploadFileInput): Promise<UploadFile> {
     const { createReadStream, filename } = await file;
 
     return new Promise(async (resolve) => {

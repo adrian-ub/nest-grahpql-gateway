@@ -1,4 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql';
+import GraphQLUpload from 'graphql-upload/GraphQLUpload';
+import { FileUpload } from 'src/common/entities/file-upload.entity';
 
 @InputType()
 export class CreateStudentInput {
@@ -17,8 +19,8 @@ export class CreateStudentInput {
   @Field(() => String)
   documento: string;
 
-  @Field(() => String)
-  photoUrl: string;
+  @Field(() => GraphQLUpload)
+  photoUrl: Promise<FileUpload>;
 
   @Field(() => String)
   birthdate: string;
